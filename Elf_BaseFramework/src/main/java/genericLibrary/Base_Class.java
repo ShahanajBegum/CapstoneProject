@@ -50,7 +50,7 @@ public class Base_Class implements FrameworkConstants {
 		}
 		driver.manage().window().maximize();
 		Reporter.log("Browser window is maximized successfully", true);
-		driver.manage().timeouts().implicitlyWait(IMPLICIT_TIMEOUT, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		explicitWait = new WebDriverWait(driver, EXPLICIT_TIMEOUT);
 	}
 
@@ -60,6 +60,7 @@ public class Base_Class implements FrameworkConstants {
 		String url = readFromPropertyFile.getValueProperty("url");
 		String username = readFromPropertyFile.getValueProperty("username");
 		String password = readFromPropertyFile.getValueProperty("password");
+		
 
 		driver.get(url);
 		loginPage = new LoginPage(driver);
@@ -69,7 +70,7 @@ public class Base_Class implements FrameworkConstants {
 	@AfterMethod(alwaysRun = true)
 	public void logoutOfApplication() {
 		homePage.logout();
-	}
+		}
 
 	@AfterClass(alwaysRun = true)
 	public void closeTheBrowser() {
